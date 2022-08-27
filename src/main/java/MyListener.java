@@ -6,8 +6,6 @@ import java.util.regex.Pattern;
 import javax.swing.*;
 
 
-// все слушатели 
-
 public class MyListener {
 	
 	public static void addAnActionListenerClear(JButton button) {
@@ -50,7 +48,7 @@ public class MyListener {
 //			}
 //			public void focusLost(FocusEvent e) {
 //				if (tField.getText().equals("")) {
-////					JOptionPane.showMessageDialog(null, "* Введите от 3 до 30 символов! *"); // !!!!!!
+////					JOptionPane.showMessageDialog(null, "*  *"); // !!!!!!
 //				} else {
 //					String txt = tField.getText();
 //					Pattern pt6=Pattern.compile("[a-zA-Z]{3,30}"); // it says, it should be 3-30 non Digits
@@ -58,11 +56,11 @@ public class MyListener {
 //					boolean matchFound1 = mh1.matches();
 //					if (!(matchFound1)) {
 //					JOptionPane.showMessageDialog(null,
-//					"* Допустимы только буквы! *");
+//					"*  *");
 //					tField.setText("");
 //					tField.requestFocus();
 //				    } else {
-////				    	JOptionPane.showMessageDialog(null, "Хорошо"); // !!!!!!!
+////				    	JOptionPane.showMessageDialog(null, " "); // !!!!!!!
 //				    	}
 //				}
 //			}
@@ -77,7 +75,7 @@ public class MyListener {
 //			}
 //			public void focusLost(FocusEvent e) {
 //				if (tField.getText().equals("")) {
-////					JOptionPane.showMessageDialog(null, "* Введите от 3 до 30 символов! *"); // !!!!!!
+////					JOptionPane.showMessageDialog(null, "* *"); // !!!!!!
 //				} else {
 //					String digits = tField.getText();
 //					Pattern pt6=Pattern.compile("\\d{3,13}"); // it says, it should be 3-13 Digits
@@ -85,11 +83,11 @@ public class MyListener {
 //					boolean matchFound1 = mh1.matches();
 //					if (!(matchFound1)) {
 //					JOptionPane.showMessageDialog(null,
-//					"* Допустимы только цифры! *");
+//					"* *");
 //					tField.setText("");
 //					tField.requestFocus();
 //				    } else {
-////				    	JOptionPane.showMessageDialog(null, "Хорошо"); // !!!!!!!
+////				    	JOptionPane.showMessageDialog(null, " "); // !!!!!!!
 //				    	}
 //				}
 //			}

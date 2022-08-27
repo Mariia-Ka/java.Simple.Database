@@ -57,14 +57,12 @@ public class MainOfFrame {
 	
     private static JLabel addALabel (String text, Container cont) {
 		JLabel label = new JLabel(text);
-//		label.setBounds(20,20,100,20);
 		label.setAlignmentX(Component.CENTER_ALIGNMENT);
 		cont.add(label);
 		return label;
 	}
     private static JLabel addALabelFound (String text, Container cont) {
 		JLabel label = new JLabel(text);
-//		label.setBounds(20,20,100,20);
 		label.setAlignmentX(Component.LEFT_ALIGNMENT);
 		Font bigFontTR = new Font("TimesRoman", Font.BOLD, 20);
 		label.setFont(bigFontTR);

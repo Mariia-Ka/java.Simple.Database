@@ -34,11 +34,11 @@ public class InfoPerson {
 		System.out.println(age);
 	}
 	
-	public void readPerson (Scanner fileSk) {// считывание из файла и присвоение значений переменным
+	public void readPerson (Scanner fileSk) {
 		name = fileSk.nextLine();
 		family = fileSk.nextLine();
-		age = fileSk.nextInt(); // int не дочитывает строку до конца
-		fileSk.nextLine(); // обязательно нужно дочитать строку до конца, int этого не сделает
+		age = fileSk.nextInt();
+		fileSk.nextLine();
 	}
 	
 	public void savePerson () {

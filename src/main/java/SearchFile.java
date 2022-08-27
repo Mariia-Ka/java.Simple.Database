@@ -28,9 +28,9 @@ public class SearchFile {
 		}
 	
 	private static void saveInfoInLabel(InfoPerson obj) {
-		MainOfFrame.labelFoundName.setText("Имя: " + obj.getName());
-		MainOfFrame.labelFoundFamily.setText("Фамилия: " + obj.getFamily());
-		MainOfFrame.labelFoundAge.setText("Возраст: " + obj.getAge());
+		MainOfFrame.labelFoundName.setText("РРјСЏ: " + obj.getName());
+		MainOfFrame.labelFoundFamily.setText("Р¤Р°РјРёР»РёСЏ: " + obj.getFamily());
+		MainOfFrame.labelFoundAge.setText("Р’РѕР·СЂР°СЃС‚: " + obj.getAge());
 	}
 		
 }

@@ -22,7 +22,7 @@ public class ConnectToBase {
 
 //    public static final String INSERT = "INSERT INTO persons (name) VALUE (?)";
 //
-//    public void insert (String name, String family, int age) {
+//    public void insert (String name) {
 //        firstConn();
 //        try (PreparedStatement ps = conn.prepareStatement(INSERT)) {
 //            ps.setString(1, name);
