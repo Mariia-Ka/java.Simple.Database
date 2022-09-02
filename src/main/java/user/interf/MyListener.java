@@ -1,20 +1,36 @@
+package user.interf;
+
+import write.read.*;
+import main.logic.InfoPerson;
 import java.awt.event.*;
-
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
 import javax.swing.*;
 
 
 public class MyListener {
 	
 	public static void addAnActionListenerClear(JButton button) {
-		ActionListener actList = new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-					MainOfFrame.fieldName.setText("");
-					MainOfFrame.fieldFamily.setText("");
-					MainOfFrame.fieldAge.setText("");
-				}
+		ActionListener actList = e -> {
+				MainOfFrame.fieldName.setText("");
+				MainOfFrame.fieldFamily.setText("");
+				MainOfFrame.fieldAge.setText("");
+			};
+		button.addActionListener(actList);
+	}
+	public static void addAnActionListenerDelete(JButton button) {
+		ActionListener actList = (e) -> {
+			System.out.println("actList");
+			String id = MainOfFrame.fieldSearch.getText();
+			System.out.println("id = "+id);
+			if (!id.equals("Не найдено")) {
+				System.out.println("try to delete");
+				ConnectToBase.getInstance().delete(id);
+				MainOfFrame.fieldSearch.setText("Файл удален");
+				MainOfFrame.labelFoundName.setText("Имя: удален");
+				MainOfFrame.labelFoundFamily.setText("Фамилия: удален");
+				MainOfFrame.labelFoundAge.setText("Возраст: удален");
+			} else {
+				System.out.println("no delete");
+			}
 		};
 		button.addActionListener(actList);
 	}
@@ -34,7 +50,8 @@ public class MyListener {
 					String family = MainOfFrame.fieldFamily.getText();
 					int age = Integer.parseInt(MainOfFrame.fieldAge.getText().trim());
 					InfoPerson person = new InfoPerson(name, family, age);
-					CreateFile.create(person);
+					CreateFile.getInstance().write(person);
+				    ConnectToBase.getInstance().write(person);
 					person.showInfo();
 				}
 		};
@@ -102,8 +119,8 @@ public class MyListener {
 			public void keyPressed(KeyEvent e) {
 				if (e.getKeyCode() == KeyEvent.VK_ENTER) {
 					int id = Integer.parseInt(MainOfFrame.fieldSearch.getText());
-//					SearchFile.search(id);
-					ConnectToBase.search(id);
+//					CreateFile.getInstance().read(id); // поиск среди текстовых файлов
+					ConnectToBase.getInstance().read(id); // поиск в БД
 				}
 			}
 			public void keyReleased(KeyEvent e) {	

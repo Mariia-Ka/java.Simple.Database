@@ -1,23 +1,14 @@
+package write.read;
+
+import user.interf.MainOfFrame;
+import main.logic.InfoPerson;
 import java.sql.*;
 
-public class ConnectToBase {
-    static String JDBC_driver = "com.mysql.cj.jdbc.Driver";
-    static String JDBC_url = "jdbc:mysql://localhost:3306/simpledatabase";
-    static String JDBC_user = "root";
-    static String JDBC_password = "483672";
+public class ConnectToBase implements WriteAndRead { // шаблон Singleton+FactoryMethod
+    private static final ConnectToBase instance = new ConnectToBase();
 
-    static Connection conn;
-    private static void firstConn () {
-        try { // подключаем драйвер СУБД
-            Class.forName(JDBC_driver);
-        } catch (ClassNotFoundException e) {
-            throw new RuntimeException(e);
-        }
-        try {
-            conn = DriverManager.getConnection(JDBC_url, JDBC_user, JDBC_password);
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
+    public static ConnectToBase getInstance () {
+        return instance;
     }
 
 //    public static final String INSERT = "INSERT INTO persons (name) VALUE (?)";
@@ -33,30 +24,28 @@ public class ConnectToBase {
 //
 //    }
 
-
-    public static String createInfoForBase (InfoPerson ip) {
+    private String createInfoForBase (InfoPerson ip) {
         String n = ip.getName();
         String f = ip.getFamily();
         int a = ip.getAge();
-        String insertStr = "INSERT INTO persons (name, family, age) VALUE ('"+ n +"', '"+ f +"', '"+ a + "')";
-        return insertStr;
+        return "INSERT INTO persons (name, family, age) VALUE ('"+ n +"', '"+ f +"', '"+ a + "')";
     }
-    public static void add (String ins) {
-        firstConn();
+    @Override
+    public void write (InfoPerson obj) {
         try {
-            conn.createStatement().execute(ins);
-            conn.close();
+            ConnectMySQL.getConnect().createStatement().execute(createInfoForBase(obj));
+            ConnectMySQL.getConnect().close();
         } catch (SQLException e) {
             e.printStackTrace();
         }
 
     }
-    public static void search (int id) {
+    @Override
+    public void read (int id) {
         String exeQ = "SELECT * FROM persons WHERE id = " + id;
         System.out.println("in search");
-        firstConn();
         try {
-            ResultSet rs = conn.createStatement().executeQuery(exeQ);
+            ResultSet rs = ConnectMySQL.getConnect().createStatement().executeQuery(exeQ);
 //            while (rs.next()) {
 //                System.out.println(rs.getString("name")+" "+rs.getString("family")+" "+
 //                        rs.getString("age"));
@@ -66,7 +55,7 @@ public class ConnectToBase {
             e.printStackTrace();
         }
     }
-    private static void saveInfoInLabel(ResultSet rs) {
+    private void saveInfoInLabel(ResultSet rs) {
         String name = null;
         String family = null;
         String age = null;
@@ -75,6 +64,8 @@ public class ConnectToBase {
                 name = rs.getString("name");
                 family = rs.getString("family");
                 age = rs.getString("age");
+            } else {
+                MainOfFrame.fieldSearch.setText("Не найдено");
             }
         } catch (SQLException e ) {
             e.printStackTrace();
@@ -83,6 +74,18 @@ public class ConnectToBase {
             MainOfFrame.labelFoundFamily.setText("Фамилия: " + family);
             MainOfFrame.labelFoundAge.setText("Возраст: " + age);
 
+    }
+    public void delete (String id) {
+        System.out.println("v delete");
+        String exeUp = "DELETE FROM persons WHERE id = " + id;
+        try {
+            Statement stmt = ConnectMySQL.getConnect().createStatement();
+            stmt.executeUpdate(exeUp);
+            stmt.close();
+            ConnectMySQL.getConnect().close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
 

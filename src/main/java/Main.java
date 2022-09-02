@@ -1,3 +1,5 @@
+import user.interf.MainOfFrame;
+
 import javax.swing.SwingUtilities;
 public class Main {
 

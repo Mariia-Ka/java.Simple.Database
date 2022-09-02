@@ -1,3 +1,5 @@
+package user.interf;
+
 import java.awt.*;
 import javax.swing.*;
 
@@ -43,6 +45,7 @@ public class MainOfFrame {
 		fieldSearch = addATextField(panel);
 		addALabel ("Введите id и нажмите enter", panel);
 		JButton buttonOFClear = addAButton("Очистить", panel);
+		JButton buttonOfDelete = addAButton("Удалить", panel);
 		JPanel panelIn = new JPanel();
 		panelIn.setLayout(new BoxLayout(panelIn, BoxLayout.PAGE_AXIS));
 		labelFoundName = addALabelFound ("Имя: ", panelIn);
@@ -52,6 +55,7 @@ public class MainOfFrame {
 		
 //		MyListener.addAnActionListenerClear(buttonOFClear, fieldSearch); // сделать листенер для поля: поиск
 		MyListener.addAnKeyListener_enter(fieldSearch);
+		MyListener.addAnActionListenerDelete(buttonOfDelete);
 //		MyListener.addAnFocusListener_digit(fieldSearch);
 	}
 	
