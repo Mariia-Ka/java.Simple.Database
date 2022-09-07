@@ -1,7 +1,6 @@
 package write.read;
 
 import main.logic.InfoPerson;
-import user.interf.MainOfFrame;
 
 import java.io.*;
 import java.util.Scanner;
@@ -84,12 +83,12 @@ public class CreateFile implements WriteAndRead { // шаблон FactoryMethod 
 		InfoPerson person = new InfoPerson();
 		person.readPerson(fileSk);
 		person.showInfo();
-		saveInfoInLabel(person);
+//		saveInfoInLabel(person);
 	}
 
-	private static void saveInfoInLabel(InfoPerson obj) {
-		MainOfFrame.labelFoundName.setText("Имя: " + obj.getName());
-		MainOfFrame.labelFoundFamily.setText("Фамилия: " + obj.getFamily());
-		MainOfFrame.labelFoundAge.setText("Возраст: " + obj.getAge());
-	}
+//	private static void saveInfoInLabel(InfoPerson obj) {
+//		MainOfFrame.labelFoundName.setText("Имя: " + obj.getName());
+//		MainOfFrame.labelFoundFamily.setText("Фамилия: " + obj.getFamily());
+//		MainOfFrame.labelFoundAge.setText("Возраст: " + obj.getAge());
+//	}
 }

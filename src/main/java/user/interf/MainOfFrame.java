@@ -1,20 +1,19 @@
 package user.interf;
 
+import controller.big.MyListener;
+import controller.big.PublisherInfoDB;
+
 import java.awt.*;
 import javax.swing.*;
-
-
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 public class MainOfFrame {
 	public static JTextField fieldName;
 	public static JTextField fieldFamily;
 	public static JTextField fieldAge;
 	public static JTextField fieldSearch;
-	public static JLabel labelFoundName;
-	public static JLabel labelFoundFamily;
-	public static JLabel labelFoundAge;
+//	public static JLabel labelFoundName;
+//	public static JLabel labelFoundFamily;
+//	public static JLabel labelFoundAge;
 	
 	private static void addComponentsToPane(Container pane) {
 //		pane.setLayout(new FlowLayout());
@@ -48,9 +47,15 @@ public class MainOfFrame {
 		JButton buttonOfDelete = addAButton("Удалить", panel);
 		JPanel panelIn = new JPanel();
 		panelIn.setLayout(new BoxLayout(panelIn, BoxLayout.PAGE_AXIS));
-		labelFoundName = addALabelFound ("Имя: ", panelIn);
-		labelFoundFamily = addALabelFound ("Фамилия: ", panelIn);
-		labelFoundAge = addALabelFound ("Возраст: ", panelIn);
+		TextLabel labelFoundName = new TextLabel("Имя: ", "name", panelIn);
+		PublisherInfoDB.getPublisher().addTextLabel(labelFoundName);
+		TextLabel labelFoundFamily = new TextLabel("Фамилия : ", "family", panelIn);
+		PublisherInfoDB.getPublisher().addTextLabel(labelFoundFamily);
+		TextLabel labelFoundAge = new TextLabel("Возраст: ", "age", panelIn);
+		PublisherInfoDB.getPublisher().addTextLabel(labelFoundAge);
+//		labelFoundName = addALabelFound ("Имя: ", panelIn);
+//		labelFoundFamily = addALabelFound ("Фамилия: ", panelIn);
+//		labelFoundAge = addALabelFound ("Возраст: ", panelIn);
 		panel.add(panelIn);
 		
 //		MyListener.addAnActionListenerClear(buttonOFClear, fieldSearch); // сделать листенер для поля: поиск

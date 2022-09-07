@@ -1,7 +1,7 @@
-package user.interf;
+package controller.big;
 
-import write.read.*;
-import main.logic.InfoPerson;
+import user.interf.MainOfFrame;
+import facade.ofModel.*;
 import java.awt.event.*;
 import javax.swing.*;
 
@@ -23,11 +23,11 @@ public class MyListener {
 			System.out.println("id = "+id);
 			if (!id.equals("Не найдено")) {
 				System.out.println("try to delete");
-				ConnectToBase.getInstance().delete(id);
+				Facade.deleteInDataBase(id);
 				MainOfFrame.fieldSearch.setText("Файл удален");
-				MainOfFrame.labelFoundName.setText("Имя: удален");
-				MainOfFrame.labelFoundFamily.setText("Фамилия: удален");
-				MainOfFrame.labelFoundAge.setText("Возраст: удален");
+//				MainOfFrame.labelFoundName.setText("Имя: удален");
+//				MainOfFrame.labelFoundFamily.setText("Фамилия: удален");
+//				MainOfFrame.labelFoundAge.setText("Возраст: удален");
 			} else {
 				System.out.println("no delete");
 			}
@@ -49,10 +49,7 @@ public class MyListener {
 					String name = MainOfFrame.fieldName.getText();
 					String family = MainOfFrame.fieldFamily.getText();
 					int age = Integer.parseInt(MainOfFrame.fieldAge.getText().trim());
-					InfoPerson person = new InfoPerson(name, family, age);
-					CreateFile.getInstance().write(person);
-				    ConnectToBase.getInstance().write(person);
-					person.showInfo();
+					Facade.writeInDataBaseAndInFile(name, family, age);
 				}
 		};
 		button.addActionListener(actList);
@@ -119,8 +116,8 @@ public class MyListener {
 			public void keyPressed(KeyEvent e) {
 				if (e.getKeyCode() == KeyEvent.VK_ENTER) {
 					int id = Integer.parseInt(MainOfFrame.fieldSearch.getText());
-//					CreateFile.getInstance().read(id); // поиск среди текстовых файлов
-					ConnectToBase.getInstance().read(id); // поиск в БД
+					Facade.searchInFiles(id);
+					Facade.searchInDB(id);
 				}
 			}
 			public void keyReleased(KeyEvent e) {	
